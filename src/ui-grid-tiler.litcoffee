@@ -8,9 +8,6 @@ possible.
 
 ##Events
 
-###resize
-Fired after a resize is complete.
-
     Polymer 'ui-grid-tiler',
 
 ##Attributes and Change Handlers
@@ -34,8 +31,6 @@ Resize the children to prevent any scrolling.
           tile.style['max-height'] = "#{width}%"
         stepDown = =>
           if ((@scrollHeight <= @clientHeight) and (@scrollWidth <= @clientWidth)) or width is 1
-            if width < (@startPercentage or 100)
-              @fire 'resize'
             return
           else
             _.each children, (tile) =>
