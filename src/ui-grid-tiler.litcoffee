@@ -25,7 +25,6 @@ Resize the children to prevent any scrolling.
         width = @startPercentage or 100
         children = @children
         _.each children, (tile) =>
-          console.log 'resetting', tile
           tile.style['max-width'] = "#{width}vmin"
           tile.style['max-height'] = "#{width}vmin"
         stepDown = =>
