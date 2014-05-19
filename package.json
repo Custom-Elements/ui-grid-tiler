@@ -1,0 +1,22 @@
+{
+  "name": "ui-grid-tiler",
+  "version": "0.0.0",
+  "dependencies": {
+    "browserify": "",
+    "browserify-data": "",
+    "coffee-script": "",
+    "coffeeify": "",
+    "express": "",
+    "gulp": "",
+    "gulp-browserify": "",
+    "gulp-less": "",
+    "gulp-rename": "",
+    "gulp-shell": "",
+    "lodash": "^2.4.1",
+    "vulcanize": ""
+  },
+  "scripts": {
+    "prepublish": "gulp --require coffee-script/register --gulpfile gulpfile.litcoffee build",
+    "test": "gulp --require coffee-script/register --gulpfile gulpfile.litcoffee watch"
+  }
+}
