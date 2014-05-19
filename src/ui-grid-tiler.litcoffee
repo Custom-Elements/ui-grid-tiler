@@ -54,7 +54,7 @@ Resize the children to prevent any scrolling.
 ##Polymer Lifecycle
 
 Hard binding here to be used from the window event handler. Keeping your `@`
-straight cane be a nuisance...
+straight can be a nuisance...
 
       created: ->
         @windowResize = @windowResize.bind(@)
