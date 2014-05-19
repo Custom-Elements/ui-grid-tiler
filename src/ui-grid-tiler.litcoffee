@@ -16,17 +16,13 @@ possible.
 Start and this percentage and step down from there in order to tile. This is
 a whole number like `100` (the default) or 50.
 
-###tileSelector
-Pick children to resize with this selector.
-
 ##Methods
 
 Resize the children to prevent any scrolling.
 
       resize: _.debounce ->
-        console.log 'resizing', @
         width = @startPercentage or 100
-        children = @querySelectorAll(@tileSelector)
+        children = @children
         _.each children, (tile) =>
           tile.style['max-width'] = "#{width}%"
           tile.style['max-height'] = "#{width}%"
