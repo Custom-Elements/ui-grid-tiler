@@ -4,8 +4,8 @@
   "main": "ui-grid-tiler.html",
   "version": "0.0.0",
   "dependencies": {
-    "platform": "Polymer/platform#master",
-    "polymer": "Polymer/polymer#master"
+    "platform": "",
+    "polymer": ""
   },
   "ignore": [
     "**/.*",
