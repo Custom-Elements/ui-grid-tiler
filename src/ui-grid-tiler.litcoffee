@@ -14,30 +14,30 @@ possible.
 
 ###startPercentage
 Start and this percentage and step down from there in order to tile. This is
-a whole number like `100` (the default) or 50.
+a whole number like `100` (the default) or 50. The actual units are in vmin -- so
+that they end up the same size.
 
 ##Methods
 
 Resize the children to prevent any scrolling.
 
-      resize: _.debounce ->
+      resize: ->
         width = @startPercentage or 100
         children = @children
         _.each children, (tile) =>
-          tile.style['max-width'] = "#{width}%"
-          tile.style['max-height'] = "#{width}%"
+          console.log 'resetting', tile
+          tile.style['max-width'] = "#{width}vmin"
+          tile.style['max-height'] = "#{width}vmin"
         stepDown = =>
           if ((@scrollHeight <= @clientHeight) and (@scrollWidth <= @clientWidth)) or width is 1
             return
           else
             _.each children, (tile) =>
-              tile.style['max-width'] = "#{width}%"
-              tile.style['max-height'] = "#{width}%"
+              tile.style['max-width'] = "#{width}vmin"
+              tile.style['max-height'] = "#{width}vmin"
             width -= 1
-            setTimeout stepDown, 2
-        setTimeout stepDown, 100
-      , 100
-
+            setTimeout stepDown, 5
+        setTimeout stepDown, 10
 
 ##Event Handlers
 
@@ -46,7 +46,8 @@ Resize the children to prevent any scrolling.
 
       childrenMutated: ->
         @resize()
-        @onMutation @, @childrenMutated
+        @onMutation @, =>
+          @childrenMutated()
 
 ##Polymer Lifecycle
 
@@ -59,10 +60,11 @@ straight can be a nuisance...
       ready: ->
 
       attached: ->
-        window.addEventListener 'resize', @windowResize
-        @onMutation @, @childrenMutated
+        window.addEventListener 'resize', =>
+          @resize()
+        @onMutation @, =>
+          @childrenMutated()
 
       domReady: ->
 
       detached: ->
-        window.removeEventListener 'resize', @windowResize
