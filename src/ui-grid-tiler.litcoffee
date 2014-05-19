@@ -23,7 +23,7 @@ Pick children to resize with this selector.
 
 Resize the children to prevent any scrolling.
 
-      resize: _.debounce ->
+      resize: ->
         width = @startPercentage or 100
         children = @querySelectorAll(@tileSelector)
         _.each children, (tile) =>
@@ -39,7 +39,6 @@ Resize the children to prevent any scrolling.
             width -= 1
             setTimeout stepDown, 5
         setTimeout stepDown, 5
-      , 100
 
 
 ##Event Handlers
