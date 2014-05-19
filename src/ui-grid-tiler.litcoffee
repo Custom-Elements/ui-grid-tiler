@@ -21,7 +21,7 @@ that they end up the same size.
 
 Resize the children to prevent any scrolling.
 
-      resize: _.debounce ->
+      resize: ->
         width = @startPercentage or 100
         children = @children
         _.each children, (tile) =>
@@ -37,7 +37,6 @@ Resize the children to prevent any scrolling.
             width -= 1
             setTimeout stepDown, 5
         setTimeout stepDown, 10
-      , 100
 
 ##Event Handlers
 
