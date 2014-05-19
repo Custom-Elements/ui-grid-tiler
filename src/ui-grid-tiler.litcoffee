@@ -23,7 +23,8 @@ Pick children to resize with this selector.
 
 Resize the children to prevent any scrolling.
 
-      resize: ->
+      resize: _.debounce ->
+        console.log 'resizing', @
         width = @startPercentage or 100
         children = @querySelectorAll(@tileSelector)
         _.each children, (tile) =>
@@ -37,8 +38,9 @@ Resize the children to prevent any scrolling.
               tile.style['max-width'] = "#{width}%"
               tile.style['max-height'] = "#{width}%"
             width -= 1
-            setTimeout stepDown, 5
-        setTimeout stepDown, 5
+            setTimeout stepDown, 2
+        setTimeout stepDown, 100
+      , 100
 
 
 ##Event Handlers
