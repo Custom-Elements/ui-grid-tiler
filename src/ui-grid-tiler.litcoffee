@@ -16,12 +16,8 @@ aspect ration tags like `video`.
 
 ##Attributes and Change Handlers
 
-###startPercentage
-Start and this percentage and step down from there in order to tile. This is
-a whole number like `100` (the default) or 50.
-
-###gridMargin
-Use this to separate grid tiles. Defaults to 1%.
+###aspectRatio
+This acts as a multiplier on width. Default is 1.
 
 ##Methods
 
@@ -29,7 +25,9 @@ Resize the children to prevent any scrolling.
 
       resize: ->
         children = @children
-        width = Math.min(@clientWidth, @clientHeight) / Math.floor(Math.sqrt(children.length))
+        core = Math.min(@clientWidth, @clientHeight) / Math.floor(Math.sqrt(children.length))
+        width = Number(@aspectRatio or 1) * core
+        height = width
         _.each children, (tile) =>
           tile.style['width'] = "#{width}px"
           tile.style['max-height'] = "#{width}px"
@@ -49,6 +47,8 @@ Resize the children to prevent any scrolling.
 
       attached: ->
         @sensor = new ResizeSensor @, =>
+          @resize()
+        window.addEventListener 'resize', =>
           @resize()
         @resize()
         @onMutation @, =>
