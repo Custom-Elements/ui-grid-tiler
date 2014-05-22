@@ -19,18 +19,25 @@ aspect ration tags like `video`.
 ###aspectRatio
 This acts as a multiplier on width. Default is 1.
 
+###selector
+When present, select these children -- otherwise get them all
+
 ##Methods
 
-Resize the children to prevent any scrolling.
+Resize the children to fill in container, maintaining the aspect ratio
+but being careful to not let the aspect ratio overflow the container.
 
       resize: ->
-        children = @children
-        core = Math.min(@clientWidth, @clientHeight) / Math.floor(Math.sqrt(children.length))
-        width = Number(@aspectRatio or 1) * core
-        height = width
+        console.log @querySelectorAll(@selector), @selector
+        children = @querySelectorAll(@selector) if @selector or @children
+        scaleWidth = @clientWidth / Math.ceil(Math.sqrt(children.length))
+        scaleHeight = @clientHeight / Math.ceil(Math.sqrt(children.length))
+        console.log Math.ceil(Math.sqrt(children.length)), scaleHeight, scaleWidth
+        aspectWidth = Number(@aspectRatio or 1) * scaleHeight
+        scaleWidth = Math.min(aspectWidth, scaleWidth)
         _.each children, (tile) =>
-          tile.style['width'] = "#{width}px"
-          tile.style['max-height'] = "#{width}px"
+          tile.style['width'] = "#{scaleWidth}px"
+          tile.style['max-height'] = "#{scaleHeight}px"
 
 ##Event Handlers
 
