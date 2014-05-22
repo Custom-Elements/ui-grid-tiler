@@ -8,6 +8,7 @@ This sets the width, but constraints the max height. This works well with forced
 aspect ration tags like `video`.
 
     _ = require 'lodash'
+    ResizeSensor = require './ResizeSensor'
 
 ##Events
 
@@ -19,31 +20,21 @@ aspect ration tags like `video`.
 Start and this percentage and step down from there in order to tile. This is
 a whole number like `100` (the default) or 50.
 
+###gridMargin
+Use this to separate grid tiles. Defaults to 1%.
+
 ##Methods
 
 Resize the children to prevent any scrolling.
 
       resize: ->
-        width = @startPercentage or 100
         children = @children
+        width = Math.min(@clientWidth, @clientHeight) / Math.floor(Math.sqrt(children.length))
         _.each children, (tile) =>
-          tile.style['width'] = "#{width}%"
-          tile.style['max-height'] = "#{width}%"
-        stepDown = =>
-          if ((@scrollHeight <= @clientHeight) and (@scrollWidth <= @clientWidth)) or width is 1
-            return
-          else
-            _.each children, (tile) =>
-              tile.style['width'] = "#{width}%"
-              tile.style['max-height'] = "#{width}%"
-            width -= 1
-            setTimeout stepDown, 5
-        setTimeout stepDown, 10
+          tile.style['width'] = "#{width}px"
+          tile.style['max-height'] = "#{width}px"
 
 ##Event Handlers
-
-      windowResize: ->
-        @resize()
 
       childrenMutated: ->
         @resize()
@@ -52,17 +43,14 @@ Resize the children to prevent any scrolling.
 
 ##Polymer Lifecycle
 
-Hard binding here to be used from the window event handler. Keeping your `@`
-straight can be a nuisance...
-
       created: ->
-        @windowResize = @windowResize.bind(@)
 
       ready: ->
 
       attached: ->
-        window.addEventListener 'resize', =>
+        @sensor = new ResizeSensor @, =>
           @resize()
+        @resize()
         @onMutation @, =>
           @childrenMutated()
 
