@@ -28,11 +28,9 @@ Resize the children to fill in container, maintaining the aspect ratio
 but being careful to not let the aspect ratio overflow the container.
 
       resize: ->
-        console.log @querySelectorAll(@selector), @selector
         children = @querySelectorAll(@selector) if @selector or @children
         scaleWidth = @clientWidth / Math.ceil(Math.sqrt(children.length))
         scaleHeight = @clientHeight / Math.ceil(Math.sqrt(children.length))
-        console.log Math.ceil(Math.sqrt(children.length)), scaleHeight, scaleWidth
         aspectWidth = Number(@aspectRatio or 1) * scaleHeight
         scaleWidth = Math.min(aspectWidth, scaleWidth)
         _.each children, (tile) =>
