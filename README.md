@@ -1,11 +1,55 @@
-#Overview
-This element will tile its immediate children in an evenly spaced grid,
-attempting to size the children to prevent any scrolling.
+#ui-grid-tiler
+This is a space filling element that resists scrolling by making its child
+elements evenly sized. By default this is centered, so that if you have
+`inline-block` children, it will form as close to a Brady Bunch style grid as
+possible.
 
-This was designed to work with tiles containing video, so works by force
-constraining the width as videos height is derived from the aspect
-ratio.
+This sets the width, but constraints the max height. This works well with forced
+aspect ration tags like `video`.
 
-#Usage
-`./ui-grid-tiler.html` is a fully built and vulcanized Polymer
-component.
+
+
+##Events
+
+
+##Attributes and Change Handlers
+
+###aspectRatio
+This acts as a multiplier on width. Default is 1.
+
+###selector
+When present, select these children -- otherwise get them all
+
+##Methods
+
+Resize the children to fill in container, maintaining the aspect ratio
+but being careful to not let the aspect ratio overflow the container.
+
+
+
+
+
+
+
+
+
+
+##Event Handlers
+
+
+
+
+
+##Polymer Lifecycle
+
+
+
+
+
+
+
+
+
+
+
+

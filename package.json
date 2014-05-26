@@ -9,14 +9,17 @@
     "express": "",
     "gulp": "",
     "gulp-browserify": "",
+    "gulp-concat": "",
     "gulp-less": "",
     "gulp-rename": "",
+    "gulp-replace": "",
     "gulp-shell": "",
     "lodash": "^2.4.1",
     "vulcanize": ""
   },
+  "license": "MIT",
   "scripts": {
-    "prepublish": "gulp --require coffee-script/register --gulpfile gulpfile.litcoffee build",
+    "postinstall": "bower install && gulp --require coffee-script/register --gulpfile gulpfile.litcoffee build",
     "test": "gulp --require coffee-script/register --gulpfile gulpfile.litcoffee watch"
   }
 }
