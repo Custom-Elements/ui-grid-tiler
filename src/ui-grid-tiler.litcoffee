@@ -22,6 +22,9 @@ This acts as a multiplier on width. Default is 1.
 ###selector
 When present, select these children -- otherwise get them all
 
+###fill
+Fill factor, defaults to `0.95`.
+
 ##Methods
 
 Resize the children to fill in container, maintaining the aspect ratio
@@ -29,8 +32,8 @@ but being careful to not let the aspect ratio overflow the container.
 
       resize: ->
         children = @querySelectorAll(@selector) if @selector or @children
-        scaleWidth = @clientWidth / Math.ceil(Math.sqrt(children.length))
-        scaleHeight = @clientHeight / Math.ceil(Math.sqrt(children.length))
+        scaleWidth = (@clientWidth / Math.ceil(Math.sqrt(children.length))) * @fill
+        scaleHeight = (@clientHeight / Math.ceil(Math.sqrt(children.length))) * @fill
         aspectWidth = Number(@aspectRatio or 1) * scaleHeight
         scaleWidth = Math.min(aspectWidth, scaleWidth)
         _.each children, (tile) =>
@@ -47,6 +50,7 @@ but being careful to not let the aspect ratio overflow the container.
 ##Polymer Lifecycle
 
       created: ->
+        @fill = 0.95
 
       ready: ->
 

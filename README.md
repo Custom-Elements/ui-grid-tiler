@@ -20,6 +20,9 @@ This acts as a multiplier on width. Default is 1.
 ###selector
 When present, select these children -- otherwise get them all
 
+###fill
+Fill factor, defaults to `0.95`.
+
 ##Methods
 
 Resize the children to fill in container, maintaining the aspect ratio
@@ -41,6 +44,7 @@ but being careful to not let the aspect ratio overflow the container.
 
 
 ##Polymer Lifecycle
+
 
 
 
