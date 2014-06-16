@@ -1,6 +1,7 @@
 
+@deep: ~"/deep/";
 .mixin-loop (@i, @j, @p) when (@i =< @j) {
-  .tile-@{i} {
+  body @{deep} .tile-@{i} {
     flex: 0 0 @p;
     max-height: @p;
   }
