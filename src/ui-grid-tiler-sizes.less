@@ -1,0 +1,14 @@
+
+.mixin-loop (@i, @j, @p) when (@i =< @j) {
+  .tile-@{i} {
+    flex: 0 0 @p;
+    max-height: @p;
+  }
+  .mixin-loop(@i + 1, @j, @p);
+}
+
+.mixin-loop(1, 1, 90%);
+.mixin-loop(2, 4, 50%);
+.mixin-loop(5, 9, 33%);
+.mixin-loop(10, 16, 25%);
+.mixin-loop(17, 25, 20%);

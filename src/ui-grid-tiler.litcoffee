@@ -29,10 +29,15 @@ but being careful to not let the aspect ratio overflow the container.
 
       resize: ->
         children = @querySelectorAll(@selector) if @selector or @children
-        scale = 100.0 / Math.ceil(Math.sqrt(children.length))
-        _.each children, (tile) =>
-          tile.style['flex'] = "0 0 #{scale}%"
-          tile.style['max-height'] = "#{scale}%"
+        visible = 0
+        _.each children, (tile) ->
+          if tile.clientWidth > 0 and tile.clientHeight > 0
+            visible += 1
+        _.each children, (tile) ->
+          _.each tile.classList, (check) ->
+            if check.slice(0, 5) is 'tile-'
+              tile.classList.remove check
+          tile.classList.add "tile-#{visible}"
 
 ##Event Handlers
 
