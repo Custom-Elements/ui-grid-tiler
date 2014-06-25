@@ -4,7 +4,7 @@
   "dependencies": {
     "lodash": "^2.4.1",
     "polymer": "git://github.com/custom-elements/polymer#master",
-    "polymer-tools": "git://github.com/custom-elements/polymer-tools#master",
+    "polymer-build": "",
     "ui-fonts": "git://github.com/custom-elements/ui-fonts#master",
     "ui-styles": "git://github.com/custom-elements/ui-styles#master"
   },
