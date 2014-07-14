@@ -34,7 +34,9 @@ but being careful to not let the aspect ratio overflow the container.
           if tile.clientWidth > 0 and tile.clientHeight > 0
             visible += 1
         _.each children, (tile) ->
-          _.each tile.classList, (check) ->
+          #this is an unfortunate ode to Safari
+          classes = tile.classList.impl or tile.classList
+          _.each classes, (check) ->
             if check.slice(0, 5) is 'tile-'
               tile.classList.remove check
           tile.classList.add "tile-#{visible}"
