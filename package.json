@@ -3,13 +3,13 @@
   "version": "0.0.0",
   "dependencies": {
     "lodash": "^2.4.1",
+    "polymer-serve": "git://github.com/custom-elements/polymer-serve",
     "polymer": "git://github.com/custom-elements/polymer#master",
-    "polymer-build": "",
     "ui-fonts": "git://github.com/custom-elements/ui-fonts#master",
     "ui-styles": "git://github.com/custom-elements/ui-styles#master"
   },
   "license": "ISC",
   "scripts": {
-    "test": "polymer-build watch . src/ build/"
+    "test": "polymer-serve ."
   }
 }
