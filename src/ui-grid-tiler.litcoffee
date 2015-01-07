@@ -7,7 +7,6 @@ possible.
 This sets the width, but constraints the max height. This works well with forced
 aspect ration tags like `video`.
 
-    _ = require 'lodash'
     ResizeSensor = require './ResizeSensor'
 
 ##Events
@@ -30,13 +29,13 @@ but being careful to not let the aspect ratio overflow the container.
       resize: ->
         children = @querySelectorAll(@selector) if @selector or @children
         visible = 0
-        _.each children, (tile) ->
+        children.array().forEach (tile) ->
           if tile.clientWidth > 0 and tile.clientHeight > 0
             visible += 1
-        _.each children, (tile) ->
+        children.array().forEach (tile) ->
           #this is an unfortunate ode to Safari
           classes = tile.classList.impl or tile.classList
-          _.each classes, (check) ->
+          Array.prototype.forEach.call classes, (check) ->
             if check.slice(0, 5) is 'tile-'
               tile.classList.remove check
           tile.classList.add "tile-#{visible}"

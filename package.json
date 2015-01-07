@@ -2,7 +2,6 @@
   "name": "ui-grid-tiler",
   "version": "0.0.0",
   "dependencies": {
-    "lodash": "^2.4.1",
     "polymer-serve": "git://github.com/custom-elements/polymer-serve",
     "polymer": "git://github.com/custom-elements/polymer#master",
     "ui-fonts": "git://github.com/custom-elements/ui-fonts#master",
